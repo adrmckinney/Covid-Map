@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { getNationalData } from '../api'
 import { Line } from 'react-chartjs-2'
 import Form from './Form'
 
 const NationalChart = () => {
   const [nationalData, setNationalData] = useState({})
-  const [search, setSearch] = useState('')
+  // const [search, setSearch] = useState('')
 
   // const addComma = (num) => {
   //   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   // }
 
-  const chartData = (xLabels, searchVariable) => {
+  const chartData = (xLabels, searchVariable, search) => {
     setNationalData({
       labels: xLabels,
       datasets: [{
@@ -25,7 +25,7 @@ const NationalChart = () => {
     })
   }
 
-  useEffect(() => {
+  const getData = (search) => {
     const xLabels = []
     const searchVariable = []
     getNationalData()
@@ -47,16 +47,16 @@ const NationalChart = () => {
         })
         datasets.forEach(dataset => searchVariable.push(dataset))
       })
-      .then(data => chartData(xLabels, searchVariable)
+      .then(data => chartData(xLabels, searchVariable, search)
       )
-  }, [search])
+  }
 
   return (
     <div className='bg-gray-50'>
       <div className='max-w-5xl mx-auto px-2 sm:px-6 lg:px-8'>
         <div className='relative flex flex-col items-center justify-center h-screen'>
           <div className='mb-6'>
-            <Form setSearch={setSearch} search={search} />
+            <Form getData={getData} />
           </div>
           {nationalData &&
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getNationalData } from '../api'
 import { Transition } from '@headlessui/react'
 
-const Form = ({ search, setSearch }) => {
+const Form = ({ search, setSearch, getData }) => {
   const [searchOption, setSearchOption] = useState('')
   const [showSearch, setShowSearch] = useState(false)
   const [searchList, setSearchList] = useState([])
@@ -81,7 +81,10 @@ const Form = ({ search, setSearch }) => {
       <button
         type='button'
         className='mb-1 inline-flex items-center px-2.5 py-1.5 h-1/2 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-        onClick={() => setSearch(searchOption)}
+        onClick={() => {
+        //   setSearch(searchOption)
+          getData(searchOption)
+        }}
       >
         <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' className='ml-0.5 mr-2 h-4 w-4'>
           <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
