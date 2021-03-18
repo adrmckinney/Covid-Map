@@ -1,23 +1,16 @@
-import { useState } from 'react'
-import StateData from './components/StateData'
 import NationalChart from './components/NationalChart'
-import Form from './components/Form'
 import Welcome from './components/Welcome'
+import Header from './components/Header'
+import Divider from './components/Divider'
 
 function App () {
-  const [currentData, setCurrentData] = useState([])
-  const [pastData, setPastData] = useState([])
-  const [search, setSearch] = useState('')
-  const [data, setData] = useState([])
-
-  console.log('search', search)
-
   return (
-    <div className='m-6 p-4'>
+    <div className='mb-24'>
+      <Header />
       <Welcome />
-      <Form setSearch={setSearch} search={search} setData={setData} />
-      <NationalChart setCurrentData={setCurrentData} currentData={currentData} setPastData={setPastData} pastData={pastData} search={search} data={data} />
-      {/* <StateData setCurrentData={setCurrentData} currentData={currentData} setPastData={setPastData} pastData={pastData} /> */}
+      <Divider />
+      <NationalChart />
+      <Divider />
     </div>
   )
 }
